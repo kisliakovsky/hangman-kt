@@ -19,7 +19,7 @@ class WordRiddleSpec : BehaviorSpec({
     }
 
     Given("Word") {
-        val word = EnglishWord("word")
+        val word = EnglishWord("simplicity")
 
         And("Empty guessed letters collection") {
             val guessedLetters = mutableSetOf<Char>()
@@ -36,7 +36,7 @@ class WordRiddleSpec : BehaviorSpec({
                 }
 
                 And("Letter from the word") {
-                    val letter = 'o'
+                    val letter = 'i'
 
                     When("Check if $letter is left") {
                         val left = riddle.left(letter)
@@ -50,7 +50,7 @@ class WordRiddleSpec : BehaviorSpec({
                         riddle.guess(letter)
 
                         Then("Guessed letters should contain $letter") {
-                            guessedLetters shouldContain 'o'
+                            guessedLetters shouldContain letter
                         }
                     }
                 }
@@ -79,14 +79,14 @@ class WordRiddleSpec : BehaviorSpec({
                     riddle.write(writer)
 
                     Then("Writer string should contain masked word") {
-                        writer.toString() shouldBe "????"
+                        writer.toString() shouldBe "??????????"
                     }
                 }
             }
         }
 
         And("All letters from the word collection") {
-            val guessedLetters = mutableSetOf('w', 'o', 'r', 'd')
+            val guessedLetters = mutableSetOf('s', 'i', 'm', 'p', 'l', 'c', 't', 'y')
 
             And("Word riddle") {
                 val riddle = WordRiddle(word, guessedLetters)
@@ -115,7 +115,7 @@ class WordRiddleSpec : BehaviorSpec({
                     riddle.write(writer)
 
                     Then("Writer string should contain unmasked word") {
-                        writer.toString() shouldBe "word"
+                        writer.toString() shouldBe "simplicity"
                     }
                 }
             }

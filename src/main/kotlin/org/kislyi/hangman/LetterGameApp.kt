@@ -1,13 +1,13 @@
 package org.kislyi.hangman
 
-class LetterGameApp(
+open class LetterGameApp(
     private val game: LetterGame,
-    private val reader: LetterReader
+    private val letterSupplier: LetterSupplier
 ) : App {
 
     override fun run() {
         while (!game.finished()) {
-            game.guess(reader.next())
+            game.guess(letterSupplier.get())
         }
         game.won()
     }

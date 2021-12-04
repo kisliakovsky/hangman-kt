@@ -2,7 +2,6 @@ package org.kislyi.hangman
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldContain
-import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import java.io.StringWriter
@@ -19,7 +18,7 @@ class HangmanGameSpec : BehaviorSpec({
 
     Given("Guessed letter riddle") {
         val letter = 'o'
-        val riddle = LetterRiddle.Fake(letter, guesses, true)
+        val riddle = FakeLetterRiddle(letter, guesses, true)
 
         And("First attempt") {
             val attempt = IntAttempt(0, 3)
@@ -46,7 +45,7 @@ class HangmanGameSpec : BehaviorSpec({
                 When("Guess a letter") {
                     game.guess(letter)
 
-                    Then("Letter should be guessed by the inner riddle") {
+                    Then("Letter should be checked by the riddle") {
                         guesses shouldContain letter
                     }
                 }
@@ -57,8 +56,8 @@ class HangmanGameSpec : BehaviorSpec({
                     When("Guess a letter") {
                         game.guess(anotherLetter)
 
-                        Then("Letter should not be guessed by the inner riddle") {
-                            guesses shouldNotContain anotherLetter
+                        Then("Letter should be checked by the riddle") {
+                            guesses shouldContain anotherLetter
                         }
                     }
                 }
@@ -90,7 +89,7 @@ class HangmanGameSpec : BehaviorSpec({
                 When("Guess a letter") {
                     game.guess(letter)
 
-                    Then("Letter should be guessed by the inner riddle") {
+                    Then("Letter should be checked by the riddle") {
                         guesses shouldContain letter
                     }
                 }
@@ -101,8 +100,8 @@ class HangmanGameSpec : BehaviorSpec({
                     When("Guess a letter") {
                         game.guess(anotherLetter)
 
-                        Then("Letter should not be guessed by the inner riddle") {
-                            guesses shouldNotContain anotherLetter
+                        Then("Letter should be checked by the riddle") {
+                            guesses shouldContain anotherLetter
                         }
                     }
                 }
@@ -112,7 +111,7 @@ class HangmanGameSpec : BehaviorSpec({
 
     Given("Not guessed letter riddle") {
         val letter = 'o'
-        val riddle = LetterRiddle.Fake(letter, guesses, false)
+        val riddle = FakeLetterRiddle(letter, guesses, false)
 
         And("First attempt") {
             val attempt = IntAttempt(0, 3)
@@ -139,7 +138,7 @@ class HangmanGameSpec : BehaviorSpec({
                 When("Guess a letter") {
                     game.guess(letter)
 
-                    Then("Letter should be guessed by the inner riddle") {
+                    Then("Letter should be checked by the riddle") {
                         guesses shouldContain letter
                     }
                 }
@@ -150,8 +149,8 @@ class HangmanGameSpec : BehaviorSpec({
                     When("Guess a letter") {
                         game.guess(anotherLetter)
 
-                        Then("Letter should not be guessed by the inner riddle") {
-                            guesses shouldNotContain anotherLetter
+                        Then("Letter should be checked by the riddle") {
+                            guesses shouldContain anotherLetter
                         }
                     }
                 }
@@ -183,7 +182,7 @@ class HangmanGameSpec : BehaviorSpec({
                 When("Guess a letter") {
                     game.guess(letter)
 
-                    Then("Letter should be guessed by the inner riddle") {
+                    Then("Letter should be checked by the riddle") {
                         guesses shouldContain letter
                     }
                 }
@@ -194,8 +193,8 @@ class HangmanGameSpec : BehaviorSpec({
                     When("Guess a letter") {
                         game.guess(anotherLetter)
 
-                        Then("Letter should not be guessed by the inner riddle") {
-                            guesses shouldNotContain anotherLetter
+                        Then("Letter should be checked by the riddle") {
+                            guesses shouldContain anotherLetter
                         }
                     }
                 }

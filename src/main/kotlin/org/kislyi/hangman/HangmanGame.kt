@@ -6,10 +6,14 @@ class HangmanGame(
 ) : LetterGame {
 
     override fun guess(letter: Char) {
-        if (riddle.left(letter)) riddle.guess(letter) else attempt.increment()
+        if (!riddle.left(letter))
+            attempt.increment()
+        riddle.guess(letter)
     }
 
-    override fun finished() = riddle.guessed() || attempt.exceeded()
+    override fun finished(): Boolean {
+        return riddle.guessed() || attempt.exceeded()
+    }
 
     override fun won() = riddle.guessed() && !attempt.exceeded()
 }

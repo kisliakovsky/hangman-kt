@@ -21,7 +21,7 @@ class VerboseLetterRiddleSpec : BehaviorSpec({
 
     Given("Letter riddle") {
         val letter = 'o'
-        val riddle = LetterRiddle.Fake(letter, guesses, false)
+        val riddle = FakeLetterRiddle(letter, guesses, false)
 
         And("Verbose letter riddle") {
             val verboseLetterRiddle = VerboseLetterRiddle(riddle, writer)
@@ -60,7 +60,7 @@ class VerboseLetterRiddleSpec : BehaviorSpec({
                 When("Guess a letter") {
                     verboseLetterRiddle.guess(anotherLetter)
 
-                    Then("Letter should be guessed by the inner riddle") {
+                    Then("Letter should be checked by the riddle") {
                         guesses shouldContain anotherLetter
                     }
 

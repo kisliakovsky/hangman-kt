@@ -17,6 +17,7 @@ class VerboseLetterGame(
         val won = letterGame.won()
         if (won) writer.write("You won!") else writer.write("You lost.")
         writer.write("\n")
+        writer.flush()
         return won
     }
 }

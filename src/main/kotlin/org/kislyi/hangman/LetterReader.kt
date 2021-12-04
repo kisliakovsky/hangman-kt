@@ -1,17 +1,12 @@
 package org.kislyi.hangman
 
-interface LetterReader : Iterator<Char>, AutoCloseable {
+import java.util.Scanner
 
-    class Fake(
-        private val char: Char,
-        var closed: Boolean = false
-    ) : LetterReader {
-        override fun hasNext() = true
+class LetterReader(private val scanner: Scanner) : LetterSupplier {
 
-        override fun next() = char
+    override fun get() = scanner.nextLine()[0]
 
-        override fun close() {
-            closed = true
-        }
+    override fun close() {
+        scanner.close()
     }
 }

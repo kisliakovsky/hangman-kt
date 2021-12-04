@@ -2,10 +2,8 @@ package org.kislyi.hangman
 
 import io.kotest.core.spec.IsolationMode.InstancePerLeaf
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
-import java.util.ArrayDeque
 
 class LetterGameAppSpec : BehaviorSpec({
 
@@ -20,13 +18,12 @@ class LetterGameAppSpec : BehaviorSpec({
     Given("Letter game") {
         val game = OneLetterGame(guesses)
 
-        And("Letter reader") {
+        And("Letter supplier") {
             val letter = 'o'
-            val lettersDeque = ArrayDeque(listOf(letter))
-            val reader = DequeLetterReader(lettersDeque)
+            val letterSupplier = OneLetterSupplier('o')
 
             And("Letter game app") {
-                val app = LetterGameApp(game, reader)
+                val app = LetterGameApp(game, letterSupplier)
 
                 When("Run app") {
                     app.run()
@@ -41,10 +38,6 @@ class LetterGameAppSpec : BehaviorSpec({
 
                     And("Guesses should contain 'o' letter") {
                         guesses shouldContain letter
-                    }
-
-                    And("Letters deque should be empty") {
-                        lettersDeque.shouldBeEmpty()
                     }
                 }
             }

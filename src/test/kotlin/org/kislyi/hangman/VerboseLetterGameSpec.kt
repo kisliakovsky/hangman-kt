@@ -20,7 +20,7 @@ class VerboseLetterGameSpec : BehaviorSpec({
     }
 
     Given("Won letter game") {
-        val game = LetterGame.Fake(guesses, true, true)
+        val game = FakeLetterGame(guesses, true, true)
 
         And("Verbose letter game") {
             val verboseGame = VerboseLetterGame(game, writer)
@@ -56,7 +56,7 @@ class VerboseLetterGameSpec : BehaviorSpec({
     }
 
     Given("Lost letter game") {
-        val game = LetterGame.Fake(guesses, true, false)
+        val game = FakeLetterGame(guesses, true, false)
 
         And("Verbose letter game") {
             val verboseGame = VerboseLetterGame(game, writer)

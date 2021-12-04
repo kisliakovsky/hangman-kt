@@ -15,6 +15,7 @@ class VerboseLetterRiddle(
         writer.write("The word: ")
         riddle.write(writer)
         writer.write("\n\n")
+        writer.flush()
     }
 
     override fun guessed() = riddle.guessed()

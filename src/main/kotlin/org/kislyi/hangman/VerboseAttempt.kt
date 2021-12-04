@@ -12,6 +12,7 @@ class VerboseAttempt(
         writer.write("Missed, mistake ")
         attempt.write(writer)
         writer.write("\n")
+        writer.flush()
     }
 
     override fun exceeded() = attempt.exceeded()
