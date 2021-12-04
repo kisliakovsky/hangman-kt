@@ -1,5 +1,6 @@
 package org.kislyi.hangman
 
+import io.kotest.core.spec.IsolationMode.InstancePerLeaf
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import java.io.StringWriter
@@ -7,17 +8,25 @@ import java.util.*
 
 class HangmanGameAppSpec : BehaviorSpec({
 
+    isolationMode = InstancePerLeaf
+
+    val writer = StringWriter()
+
+    afterTest {
+        writer.buffer.setLength(0)
+    }
+
     Given("Riddle supplier") {
         val riddleSupplier = OneLetterRiddleSupplier(WordRiddle(EnglishWord("simplicity")))
 
-        And("One letter supplier") {
-            val letterSupplier = OneLetterSupplier('a')
+        And("Attempt") {
+            val attempt = IntAttempt(5)
 
-            And("Writer") {
-                val writer = StringWriter()
+            And("One letter supplier") {
+                val letterSupplier = OneLetterSupplier('a')
 
                 And("Hangman game app") {
-                    val app = HangmanGameApp(riddleSupplier, letterSupplier, writer)
+                    val app = HangmanGameApp(riddleSupplier, letterSupplier, writer, attempt)
 
                     When("Run app") {
                         app.run()
@@ -38,18 +47,14 @@ class HangmanGameAppSpec : BehaviorSpec({
                     }
                 }
             }
-        }
 
-        And("Riddle word letter supplier") {
-            val letterSupplier = CycleLetterSupplier(
-                ArrayDeque(listOf('s', 'i', 'm', 'p', 'l', 'c', 't', 'y'))
-            )
-
-            And("Writer") {
-                val writer = StringWriter()
+            And("Riddle word letter supplier") {
+                val letterSupplier = CycleLetterSupplier(
+                    ArrayDeque(listOf('s', 'i', 'm', 'p', 'l', 'c', 't', 'y'))
+                )
 
                 And("Hangman game app") {
-                    val app = HangmanGameApp(riddleSupplier, letterSupplier, writer)
+                    val app = HangmanGameApp(riddleSupplier, letterSupplier, writer, attempt)
 
                     When("Run app") {
                         app.run()

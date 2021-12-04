@@ -11,8 +11,8 @@ class LetterReaderSpec : BehaviorSpec({
     Given("Scanner") {
         val scanner = mockk<Scanner> {
             coEvery {
-                next()
-            } returns "ok"
+                nextLine()
+            } returns "Ok"
         }
 
         And("Letter reader") {
@@ -21,7 +21,7 @@ class LetterReaderSpec : BehaviorSpec({
             When("Get the next value") {
                 val next = reader.get()
 
-                Then("Letter reader should return the first letter of the scanner's next value") {
+                Then("Reader should return the first letter of the scanner's next value in the lower case") {
                     next shouldBe 'o'
                 }
             }
