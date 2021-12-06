@@ -44,3 +44,7 @@ tasks.shadowJar {
         attributes("Main-Class" to "org.kislyi.hangman.HangmanGameAppKt")
     }
 }
+
+tasks.build {
+    dependsOn("shadowJar")
+}
