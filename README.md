@@ -8,7 +8,7 @@ word doesn't contain a letter, the computer gives a penalty point for
 the user. If there are five penalty points, the user loses. If there
 are no hidden letters anymore, the computer loses.  
   
-This is a refactored Kotlin version of the game presented by [@yegor256](https://github.com/yegor256/hangman) [here](https://github.com/yegor256/hangman).  
+This is a refactored (**in object-oriented way**) Kotlin version of the game presented by [@yegor256](https://github.com/yegor256/hangman) [here](https://github.com/yegor256/hangman).  
   
 ## Prerequisitions
 Make sure you have Java installed. To install Java you can use [SDKMAN!](https://sdkman.io/)
