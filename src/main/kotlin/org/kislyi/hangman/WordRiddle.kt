@@ -13,8 +13,8 @@ class WordRiddle(
 
     override fun guess(letter: Char) {
         word.forEach {
-            if (it == letter) {
-                guessedLetters.add(letter)
+            if (it.equals(letter, ignoreCase = true)) {
+                guessedLetters.add(letter.lowercaseChar())
             }
         }
     }

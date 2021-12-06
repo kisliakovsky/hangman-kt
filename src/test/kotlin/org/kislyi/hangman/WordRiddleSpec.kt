@@ -46,11 +46,19 @@ class WordRiddleSpec : BehaviorSpec({
                         }
                     }
 
-                    When("Guess $letter") {
+                    When("Guess lower case ${letter.lowercaseChar()}") {
                         riddle.guess(letter)
 
                         Then("Guessed letters should contain $letter") {
-                            guessedLetters shouldContain letter
+                            guessedLetters shouldContain letter.lowercaseChar()
+                        }
+                    }
+
+                    When("Guess upper case ${letter.uppercaseChar()}") {
+                        riddle.guess(letter)
+
+                        Then("Guessed letters should contain $letter") {
+                            guessedLetters shouldContain letter.lowercaseChar()
                         }
                     }
                 }
